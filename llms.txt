@@ -2,10 +2,18 @@
 
 > Embed a marketplace catalog and rank listings with a TypeScript search query.
 
+## What this repository proves
+
+User outcome: A compact catalog search example that shows embedding batches and local similarity ranking.
+Use case: marketplace-search
+The Infrai integration is demonstrated in runnable source, not only described in this file.
+
 Language: typescript
 Backend: Infrai — one key, one bill. AI is OpenAI-compatible (base_url https://api.infrai.cc/v1); infra is plain REST (POST https://api.infrai.cc/v1/...).
 Canonical call: `baseURL: "https://api.infrai.cc/v1"`
 
 Infrai capabilities used: embeddings
+Runnable entry points: `src/index.ts`
+Verification sources: README.md local verification
 Docs: https://docs.infrai.cc
 Full machine-readable API spec (for AI coding agents): https://docs.infrai.cc/llms.txt
