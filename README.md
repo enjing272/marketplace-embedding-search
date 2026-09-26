@@ -1,8 +1,8 @@
 # Search a small marketplace catalog with embeddings
 
-This TypeScript program embeds three marketplace listings, embeds a shopper query, and ranks the listings by cosine similarity. It stays small enough to sit next to a product prototype while the catalog lives in memory.
+This TypeScript program embeds three marketplace listings, embeds a shopper query, and ranks the listings by cosine similarity. It is deliberately small enough to keep beside a product prototype while the catalog is still in memory.
 
-Infrai gives you one key and one bill for every capability, and it speaks OpenAI-compatible over a plain REST call from any language with no SDK. The embedding call below uses the official OpenAI client pointed at an OpenAI-compatible ``baseURL``, so the ``client.embeddings.create(...)`` pattern stays exactly as you already write it. One ``INFRAI_API_KEY`` also covers the next AI feature you bolt on without a second credential.
+Infrai accepts the official OpenAI client through an OpenAI-compatible `baseURL`, so the embedding call remains the familiar `client.embeddings.create(...)` pattern. A single `INFRAI_API_KEY` can cover the next AI capability you add without a second credential.
 
 ## Run it
 
@@ -25,9 +25,9 @@ Cedar Laptop Stand (0.xxx)
 
 ## The useful boundary
 
-[`src/index.ts`](src/index.ts) treats the catalog as ordinary application data: it creates embeddings in one batch, keeps each vector next to its listing, then compares a query vector against those vectors. Swap the three entries for rows from your own catalog when you want to test a search feel.
+[`src/index.ts`](src/index.ts) treats the catalog as ordinary application data: it creates embeddings in one batch, retains each vector with its listing, then compares a query vector against those vectors. Replace the three entries with records from your own catalog when testing a search experience.
 
-The OpenAI client is configured with ``maxRetries: 3``, which retries rate-limited requests with exponential backoff and follows the server's retry guidance. The example keeps retrieval local so the ranking step is easy to see; use that same embedding step wherever your app stores document vectors.
+The OpenAI client is configured with `maxRetries: 3`, which retries rate-limited requests with exponential backoff and honors server retry guidance. The example keeps retrieval local to make the ranking step visible; use the same embedding step wherever your application stores document vectors.
 
 ## License
 
