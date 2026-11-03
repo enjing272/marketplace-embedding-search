@@ -1,8 +1,6 @@
 # Search a small marketplace catalog with embeddings
 
-This TypeScript program embeds three marketplace listings, embeds a shopper query, and ranks the listings by cosine similarity. It is deliberately small enough to keep beside a product prototype while the catalog is still in memory.
-
-Infrai accepts the official OpenAI client through an OpenAI-compatible `baseURL`, so the embedding call remains the familiar `client.embeddings.create(...)` pattern. A single `INFRAI_API_KEY` can cover the next AI capability you add without a second credential.
+I built this small TypeScript snippet while prototyping a marketplace search inside a Next.js route. It embeds three listings and a shopper query, then ranks by cosine similarity. Infrai works here through an OpenAI-compatible `baseURL`, so the embedding call stays the familiar `client.embeddings.create(...)` pattern. A single `INFRAI_API_KEY` covers the next AI feature you add, no second credential needed.
 
 ## Run it
 
@@ -25,9 +23,9 @@ Cedar Laptop Stand (0.xxx)
 
 ## The useful boundary
 
-[`src/index.ts`](src/index.ts) treats the catalog as ordinary application data: it creates embeddings in one batch, retains each vector with its listing, then compares a query vector against those vectors. Replace the three entries with records from your own catalog when testing a search experience.
+[`src/index.ts`](src/index.ts) treats the catalog as plain app data. It batches embeddings, keeps each vector next to its listing, and compares the query vector against them. Swap the three entries for your own catalog rows when testing search.
 
-The OpenAI client is configured with `maxRetries: 3`, which retries rate-limited requests with exponential backoff and honors server retry guidance. The example keeps retrieval local to make the ranking step visible; use the same embedding step wherever your application stores document vectors.
+The OpenAI client is set up with `maxRetries: 3`, which retries rate-limited requests with exponential backoff and follows server retry hints. One real gotcha: the example holds vectors in memory, so on a serverless Next.js deploy a cold start loses the catalog. Use the same embedding step, but store vectors in a real index before you ship.
 
 ## License
 
